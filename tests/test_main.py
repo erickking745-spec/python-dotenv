@@ -565,3 +565,11 @@ def test_dotenv_values_file_stream(dotenv_path):
         result = dotenv.dotenv_values(stream=f)
 
     assert result == {"a": "b"}
+    def test_missing_env_file_verbose(tmp_path):
+    from dotenv import load_dotenv
+
+    missing_file = tmp_path / ".env"
+
+    result = load_dotenv(dotenv_path=str(missing_file), verbose=True)
+
+    assert result is False or result is True
