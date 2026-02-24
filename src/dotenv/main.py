@@ -344,6 +344,13 @@ def load_dotenv(
     encoding: Optional[str] = "utf-8",
 ) -> bool:
     """Parse a .env file and then load all the variables found as environment variables.
+    import os
+import logging
+
+logger = logging.getLogger(__name__)
+
+if verbose and dotenv_path and not os.path.exists(dotenv_path):
+    logger.warning("dotenv file not found: %s", dotenv_path)
 
     Parameters:
         dotenv_path: Absolute or relative path to .env file.
